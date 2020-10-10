@@ -1,4 +1,4 @@
-package simplemath
+package simple
 
 func Add(a int, b int) int {
 	return a + b

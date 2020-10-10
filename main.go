@@ -2,7 +2,7 @@ package main
 
 // 引入其它包
 import (
-	"demo/simplemath"
+	"demo/simple"
 	"fmt"
 	"os"
 	"strconv"
@@ -44,8 +44,8 @@ func main() {
 			fmt.Println("USAGE: calc add <integer1><integer2>")
 			return
 		}
-		// 从 simplemath 包引入 Add 方法进行加法计算
-		ret := simplemath.Add(v1, v2)
+		// 从 simple 包引入 Add 方法进行加法计算
+		ret := simple.Add(v1, v2)
 		// 打印计算结果
 		fmt.Println("Result: ", ret)
 	// 如果是计算平方根的话
@@ -62,11 +62,15 @@ func main() {
 			fmt.Println("USAGE: calc sqrt <integer>")
 			return
 		}
-		// 从 simplemath 包引入 Sqrt 方法进行平方根计算
-		ret := simplemath.Sqrt(v)
+		// 从 simple 包引入 Sqrt 方法进行平方根计算
+		ret := simple.Sqrt(v)
 		// 打印计算结果
 		fmt.Println("Result: ", ret)
 	// 如果计算方法不支持，打印程序使用指南
+	case "string":
+		name := os.Args[2]
+		result := simple.Substr(name)
+		fmt.Println(result)
 	default:
 		Usage()
 	}
