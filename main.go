@@ -22,7 +22,7 @@ func main() {
 	 */
 	args := os.Args
 	// 除程序名本身外，至少需要传入两个其它参数，否则退出
-	if args == nil || len(args) < 3 {
+	if args == nil || len(args) < 2 {
 		Usage()
 		return
 	}
@@ -70,7 +70,11 @@ func main() {
 	case "string":
 		name := os.Args[2]
 		result := simple.Substr(name)
-		fmt.Println(result)
+		fmt.Printf("%c,%c,%c", result[0], result[1], result[2])
+	case "slice":
+		slide := simple.Slice()
+		fmt.Println(slide)
+
 	default:
 		Usage()
 	}
