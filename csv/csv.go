@@ -30,11 +30,11 @@ func main() {
 		file.WriteString("\xEF\xBB\xBF")
 		w := csv.NewWriter(file)
 		var fd_content string
-		fd_content = strings.Join([]string{"SKU", "IMAGES"}, ",") + "\n"
+		fd_content = strings.Join([]string{"SKU", "NAME", "DESC", "TYPE", "PRICE", "STOCK", "LEVEL", "IMAGES"}, ",") + "\n"
 		for _, sku := range skuArr {
 			id, images := readImages(sku)
 			if images != "" {
-				fd_content += strings.Join([]string{id, images}, ",") + "\n"
+				fd_content += strings.Join([]string{id, "", "", "", "", "", "", images}, ",") + "\n"
 				fmt.Println(id, images)
 			}
 		}
