@@ -3,6 +3,7 @@ package main
 // 引入其它包
 import (
 	"demo/simple"
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -23,7 +24,21 @@ func main() {
 	args := os.Args
 	// 除程序名本身外，至少需要传入两个其它参数，否则退出
 	if args == nil || len(args) < 2 {
-		Usage()
+		error := errors.New("参数不能少于2个")
+		fmt.Println(error)
+		return
+		//var myarr = [3]int{1, 2, 3}
+		//fmt.Println(interface{}(myarr))
+		//value, ok := interface{}(myarr).([3]int)
+		//fmt.Println(value,ok)
+
+		//=======================
+		//num2是否属于接口Number1
+		var num1 simple.Number = 1
+		var num2 simple.Number2 = &num1
+		if num3, ok := num2.(simple.Number1); ok {
+			fmt.Println(num3.Equal(1))
+		}
 		return
 	}
 
@@ -74,6 +89,24 @@ func main() {
 	case "slice":
 		slide := simple.Slice()
 		fmt.Println(slide)
+
+	case "map":
+		simple.Map()
+
+	case "ptr":
+		a := 1
+		b := 2
+		simple.Ptr(&a, &b)
+		fmt.Println(a, b)
+
+	case "interface":
+		simple.Interface(1, "aaa", true, [1]int{123}, []string{"aa", "bbb"}, map[string]string{"name": "jack"})
+
+	case "struct":
+		student := simple.NewStudent(1, "jack", true, 99)
+		student.SetName("徐华德")
+		fmt.Println(student)
+	case "go":
 
 	default:
 		Usage()
