@@ -27,7 +27,7 @@ func main() {
 			fmt.Println("open file is failed, err: ", err)
 		}
 		defer file.Close()
-		file.WriteString("\xEF\xBB\xBF")
+		//file.WriteString("\xEF\xBB\xBF")
 		w := csv.NewWriter(file)
 		var fd_content string
 		fd_content = strings.Join([]string{"SKU", "NAME", "DESC", "TYPE", "PRICE", "STOCK", "LEVEL", "IMAGES"}, ",") + "\n"
@@ -61,6 +61,8 @@ func readImages(imagepath string) (string, string) {
 		sku = filepath.Base(sku)
 		fi, _ := os.Stat(image)
 		images[i] = strings.Replace(image, old, "", -1)
+		images[i] = strings.Replace(images[i], "\\", "/", -1)
+
 		if !fi.IsDir() {
 			filesSlice = append(filesSlice, images[i])
 		}
